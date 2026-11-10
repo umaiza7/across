@@ -1,0 +1,92 @@
+.shell { min-height: 100dvh; }
+
+.shell__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  padding: var(--sp-4) var(--gutter);
+  max-width: var(--page);
+  margin-inline: auto;
+}
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  min-height: var(--tap-min);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-lg);
+  letter-spacing: 0.16em;
+  font-family: var(--font);
+}
+.demo-pill {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  padding: var(--sp-1) var(--sp-3);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* Mobile: a fixed bottom bar with three labelled items. */
+.shell__nav {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: var(--z-sticky);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: var(--sp-2) var(--sp-2) calc(var(--sp-2) + env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--surface) 96%, transparent);
+  border-block-start: 1.5px solid var(--line);
+  box-shadow: 0 -6px 24px rgb(41 39 40 / 0.06);
+}
+.nav-item {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-height: var(--tap);
+  padding: var(--sp-2) var(--sp-1);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  transition: background-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+.nav-item i { font-size: var(--icon-md); transition: transform var(--dur) var(--ease-spring); }
+.nav-item:hover { color: var(--text); background: color-mix(in srgb, var(--text) 5%, transparent); }
+.nav-item.active { color: var(--rifle-ink); background: color-mix(in srgb, var(--accent) 55%, transparent); }
+.nav-item.active i { transform: translateY(-2px) scale(1.1); }
+
+.shell__main {
+  max-width: var(--page);
+  margin-inline: auto;
+  padding: var(--sp-3) var(--gutter) calc(var(--tap) + var(--sp-9));
+}
+
+/* Desktop: navigation sits in the header row instead. */
+@media (min-width: 900px) {
+  .shell { display: grid; grid-template-columns: 1fr auto; max-width: var(--page); margin-inline: auto; }
+  .shell__top { max-width: none; margin: 0; }
+  .shell__nav {
+    position: static;
+    display: flex;
+    gap: var(--sp-2);
+    padding: var(--sp-4) var(--gutter);
+    background: none;
+    border: 0;
+    box-shadow: none;
+  }
+  .nav-item { display: inline-flex; align-items: center; gap: var(--sp-2); padding: 0 var(--sp-4); border-radius: var(--radius-pill); }
+  .shell__main { grid-column: 1 / -1; width: 100%; padding-block-end: var(--sp-9); }
+}
+
+/* Page transition: content rises in softly. Exit is instant so navigation never waits. */
+.page-enter { animation: page-in var(--dur-slow) var(--ease-out) both; }
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}

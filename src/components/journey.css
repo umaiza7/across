@@ -1,0 +1,107 @@
+/*
+ * The learning journey: one winding path, read top to bottom.
+ * A dashed line runs through the markers; stops alternate sides on wide screens.
+ */
+.path {
+  --marker: 72px;
+  position: relative;
+  display: grid;
+  gap: var(--sp-6);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.path::before {
+  content: '';
+  position: absolute;
+  inset-block: calc(var(--marker) / 2) calc(var(--marker) / 2);
+  inset-inline-start: calc(var(--marker) / 2 - 1.5px);
+  border-inline-start: 3px dashed var(--doodle);
+  opacity: 0.7;
+}
+
+.stop {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--marker) 1fr;
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+.stop__marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--marker);
+  height: var(--marker);
+  border-radius: 50%;
+  border: 3px solid var(--doodle);
+  background: var(--bg);
+  color: var(--text-muted);
+}
+.stop__marker i { font-size: var(--icon-lg); }
+.stop--done .stop__marker { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+.stop--current .stop__marker {
+  background: var(--accent);
+  border-color: var(--rifle-ink);
+  color: var(--rifle-ink);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--accent) 45%, transparent);
+  animation: stop-pulse 2.8s var(--ease-in-out) infinite;
+}
+@keyframes stop-pulse {
+  0%, 100% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 45%, transparent); }
+  50% { box-shadow: 0 0 0 12px color-mix(in srgb, var(--accent) 15%, transparent); }
+}
+
+.stop__card {
+  position: relative;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  box-shadow: var(--shadow-1);
+}
+.stop--upcoming .stop__card { background: transparent; box-shadow: none; border-style: dashed; }
+.stop--current .stop__card { border-color: var(--rifle-ink); box-shadow: var(--shadow-2); }
+
+.stop__here {
+  position: absolute;
+  inset-block-start: calc(var(--sp-6) * -1);
+  inset-inline-end: var(--sp-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-weight: var(--fw-bold);
+  color: var(--rifle-ink);
+}
+.stop__here .doodle { transform: rotate(var(--tilt)) scaleY(-1); }
+[dir='rtl'] .stop__here .doodle { transform: rotate(calc(var(--tilt) * -1)) scale(-1, -1); }
+
+.stop__status { font-size: var(--fs-sm); font-weight: var(--fw-bold); color: var(--text-muted); }
+.stop--done .stop__status { color: var(--success); }
+.stop__title { font-size: var(--fs-xl); font-weight: var(--fw-bold); margin-block: var(--sp-1); }
+.stop__summary { color: var(--text-muted); }
+.stop__foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3) var(--sp-5); margin-block-start: var(--sp-4); }
+
+.stop__badge { display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-sm); color: var(--text-muted); }
+.stop__badge--on { color: var(--text); font-weight: var(--fw-bold); }
+
+.stop__card--finish { display: flex; align-items: center; gap: var(--sp-4); }
+.stop__finish-sparkle { position: absolute; inset-inline-end: var(--sp-4); inset-block-start: var(--sp-3); }
+
+/* The stop the learner just finished: the marker pops and sparkles once. */
+.stop--celebrate .stop__marker { animation: stop-pop 900ms var(--ease-spring) 200ms both; }
+@keyframes stop-pop {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Wide screens: the path winds by pushing alternate stops inward. */
+@media (min-width: 760px) {
+  .path { --marker: 84px; }
+  .stop--right { margin-inline-start: var(--sp-8); }
+  .stop--right .stop__marker { margin-inline-start: calc(var(--sp-8) * -1); }
+  .stop--right { grid-template-columns: var(--marker) 1fr; }
+}

@@ -1,0 +1,39 @@
+/* Sparkle burst: a single authored moment for a correct answer. */
+.burst {
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.burst__ray {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  background: var(--doodle-strong);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  opacity: 0;
+  animation: burst-out 760ms var(--ease-out) forwards;
+}
+.burst__ray--1 { background: var(--doodle); width: 10px; height: 10px; margin: -5px 0 0 -5px; animation-delay: 40ms; }
+.burst__ray--2 { background: var(--accent); width: 12px; height: 12px; margin: -6px 0 0 -6px; animation-delay: 80ms; }
+
+@keyframes burst-out {
+  0% { opacity: 0; transform: rotate(var(--angle)) translateY(0) scale(0.3); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(var(--angle)) translateY(calc(var(--reach) * -1)) scale(1) rotate(90deg); }
+}
+
+/* Badge reveal: the medal turns in, then settles with a soft glow ring. */
+.reveal {
+  animation: badge-reveal 900ms var(--ease-spring) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+@keyframes badge-reveal {
+  0% { opacity: 0; transform: scale(0.4) rotate(-40deg); }
+  60% { opacity: 1; transform: scale(1.08) rotate(6deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}

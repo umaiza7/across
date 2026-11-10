@@ -1,0 +1,236 @@
+/* Hackathon design tokens
+   Palette: Merino / Kangaroo / Oyster / Rifle Green / Cedar
+   Type: Sulphur Point (DWS Studio), weights 300 / 400 / 700, no italics
+   Icons: Simple Line Icons + extended set (icons/simple-line-icons.css)
+   Contrast ratios are noted next to every text pairing (WCAG AA = 4.5, large text = 3). */
+
+/* Fonts and the icon font load from index.html. */
+
+:root {
+  /* ---- Brand primitives (never use these directly in components) ---- */
+  --merino: #f1f1ec;    /* Merino: light ground */
+  --kangaroo: #d0c7b3;  /* Kangaroo: warm accent fill */
+  --oyster: #939474;    /* Oyster: fills, borders, icons (2.75 on merino, never body text on light) */
+  --rifle: #43442b;     /* Rifle Green: brand colour, primary actions */
+  --cedar: #292728;     /* Cedar: text, dark ground */
+
+  /* Derived from the palette */
+  --paper: #fafaf7;        /* cards on Merino */
+  --cedar-2: #35332f;      /* raised surface on cedar */
+  --rifle-2: #55563a;      /* rifle hover: merino on it 6.7 */
+  --oyster-deep: #6b6c52;  /* oyster as text on light: 4.8 on merino */
+  --oyster-light: #adae90; /* oyster as text on dark: 6.5 on cedar, 5.5 on cedar-2 */
+  --line-merino: #dedbd0;  /* divider on light surfaces */
+  --line-cedar: #45433d;   /* divider on dark surfaces */
+
+  /* Status colours, earthy to sit with the greens */
+  --brick: #a23b2a;  --brick-light: #e39684;
+  --moss: #5a6e2f;   --moss-light: #b7c98a;
+  --slate: #3e5f78;  --slate-light: #a9c3dd;
+
+  /* ---- Semantic tokens: light theme (default) ---- */
+  --bg: var(--merino);
+  --surface: var(--paper);
+  --surface-strong: var(--rifle);
+  --text: var(--cedar);                  /* 13.1 on merino, 14.2 on paper */
+  --text-muted: var(--oyster-deep);      /* 4.8 on merino */
+  --text-on-strong: var(--merino);       /* 8.8 on rifle */
+  --text-on-strong-muted: var(--kangaroo); /* 6.0 on rifle */
+  --accent-on-strong: var(--kangaroo);   /* 6.0 on rifle */
+  --accent: var(--kangaroo);             /* fill only, never text on light (1.5) */
+  --accent-hover: var(--oyster);
+  --on-accent: var(--cedar);             /* 8.8 on kangaroo */
+  --accent-text: var(--kangaroo);        /* only on rifle or cedar */
+  --line: var(--line-merino);
+  --line-strong: var(--oyster-deep);     /* control borders, 4.8 on merino */
+  --danger: var(--brick);                /* 5.8 on merino */
+  --success: var(--moss);                /* 5.0 on merino */
+  --info: var(--slate);                  /* 6.0 on merino */
+  --primary: var(--rifle);               /* primary button fill on light */
+  --primary-hover: var(--rifle-2);
+  --on-primary: var(--merino);           /* 8.8 on rifle */
+  --focus: var(--rifle);
+  --scrim: rgb(41 39 40 / 0.55);
+
+  /* ---- Type ---- */
+  --font: "Sulphur Point", "Avenir Next", "Century Gothic", system-ui, sans-serif;
+  --font-ar: "Noto Naskh Arabic", "Geeza Pro", var(--font);
+  --font-ur: "Noto Nastaliq Urdu", "Noto Naskh Arabic", var(--font);
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-bold: 700;
+  /* Scale (1.25 ratio, 16px base) */
+  --fs-xs: 0.875rem;   /* 14: caps labels only */
+  --fs-sm: 1.0625rem;  /* 17: smallest running text for older eyes */
+  --fs-base: 1.1875rem;/* 19: Sulphur Point runs small and the audience is older */
+  --fs-lg: 1.375rem;   /* 22 */
+  --fs-xl: 1.625rem;   /* 26 */
+  --fs-2xl: 2.125rem;  /* 34 */
+  --fs-3xl: clamp(2.5rem, 5vw, 3.5rem);
+  --fs-display: clamp(3rem, 8vw, 6rem);
+  --lh-tight: 1.05;
+  --lh-snug: 1.25;
+  --lh-body: 1.6;
+  --tracking-caps: 0.12em;
+
+  /* ---- Space (4px base) ---- */
+  --sp-1: 0.25rem; --sp-2: 0.5rem; --sp-3: 0.75rem; --sp-4: 1rem;
+  --sp-5: 1.5rem;  --sp-6: 2rem;   --sp-7: 3rem;    --sp-8: 4rem; --sp-9: 6rem;
+
+  /* ---- Shape & depth ---- */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-1: 0 1px 2px rgb(41 39 40 / 0.06), 0 2px 8px rgb(41 39 40 / 0.05);
+  --shadow-2: 0 4px 12px rgb(41 39 40 / 0.09), 0 12px 32px rgb(41 39 40 / 0.09);
+
+  /* ---- Icons ---- */
+  --icon-sm: 18px; --icon-md: 22px; --icon-lg: 32px;
+
+  /* ---- Touch ---- */
+  --tap: 56px;       /* buttons and choices: larger than the 44px minimum for older hands */
+  --tap-min: 48px;
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 360ms;
+
+  /* ---- Layers ---- */
+  --z-sticky: 10; --z-dropdown: 20; --z-overlay: 40; --z-modal: 100; --z-toast: 1000;
+
+  color-scheme: light;
+}
+
+/* ---- Dark theme: cedar ground, kangaroo carries the light ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--cedar);
+    --surface: var(--cedar-2);
+    --surface-strong: var(--rifle);
+    --text: var(--merino);                 /* 13.1 on cedar */
+    --text-muted: var(--oyster-light);     /* 6.5 on cedar, 5.5 on cedar-2 */
+    --text-on-strong: var(--merino);
+    --text-on-strong-muted: var(--kangaroo);
+    --accent-on-strong: var(--kangaroo);
+    --accent-text: var(--kangaroo);        /* 8.8 on cedar */
+    --line: var(--line-cedar);
+    --line-strong: var(--oyster-light);
+    --danger: var(--brick-light);          /* 6.3 on cedar */
+    --success: var(--moss-light);          /* 8.3 on cedar */
+    --info: var(--slate-light);            /* 8.2 on cedar */
+    --primary: var(--kangaroo);            /* kangaroo on cedar ground */
+    --primary-hover: var(--merino);
+    --on-primary: var(--cedar);            /* 8.8 on kangaroo */
+    --focus: var(--kangaroo);
+    --scrim: rgb(0 0 0 / 0.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: var(--cedar);
+  --surface: var(--cedar-2);
+  --surface-strong: var(--rifle);
+  --text: var(--merino);                 /* 13.1 on cedar */
+  --text-muted: var(--oyster-light);     /* 6.5 on cedar, 5.5 on cedar-2 */
+  --text-on-strong: var(--merino);
+  --text-on-strong-muted: var(--kangaroo);
+  --accent-on-strong: var(--kangaroo);
+  --accent-text: var(--kangaroo);        /* 8.8 on cedar */
+  --line: var(--line-cedar);
+  --line-strong: var(--oyster-light);
+  --danger: var(--brick-light);          /* 6.3 on cedar */
+  --success: var(--moss-light);          /* 8.3 on cedar */
+  --info: var(--slate-light);            /* 8.2 on cedar */
+  --primary: var(--kangaroo);            /* kangaroo on cedar ground */
+  --primary-hover: var(--merino);
+  --on-primary: var(--cedar);            /* 8.8 on kangaroo */
+  --focus: var(--kangaroo);
+  --scrim: rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { line-height: var(--lh-snug); text-wrap: balance; margin: 0; }
+h1 { font-size: var(--fs-3xl); font-weight: var(--fw-light); line-height: var(--lh-tight); letter-spacing: -0.02em; }
+h2 { font-size: var(--fs-2xl); font-weight: var(--fw-regular); letter-spacing: -0.01em; }
+h3 { font-size: var(--fs-xl);  font-weight: var(--fw-bold); }
+h4 { font-size: var(--fs-lg);  font-weight: var(--fw-bold); }
+p  { margin: 0; max-width: 68ch; }
+.eyebrow { font-size: var(--fs-xs); font-weight: var(--fw-bold); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted); }
+.muted { color: var(--text-muted); }
+.num { font-variant-numeric: tabular-nums; }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: var(--radius-sm); }
+
+/* Icons: Simple Line Icons only */
+[class^="icon-"], [class*=" icon-"] { font-size: var(--icon-md); line-height: 1; vertical-align: -0.15em; }
+
+/* ---- Core components ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2);
+  min-height: var(--tap); padding: 0 var(--sp-5);
+  font: var(--fw-bold) var(--fs-sm)/1 var(--font); letter-spacing: 0.02em;
+  border: 1.5px solid transparent; border-radius: var(--radius-pill);
+  cursor: pointer; touch-action: manipulation; text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out), border-color var(--dur-fast);
+}
+.btn:active { transform: scale(0.97); }
+.btn[disabled], .btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; transform: none; }
+/* Primary is rifle green on light surfaces and kangaroo on cedar (theme tokens above). */
+.btn-primary   { background: var(--primary); color: var(--on-primary); }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-dark      { background: var(--surface-strong); color: var(--text-on-strong); }
+.btn-secondary { background: transparent; color: var(--text); border-color: var(--line-strong); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--text) 6%, transparent); }
+.btn-icon { width: var(--tap); padding: 0; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: var(--sp-5); box-shadow: var(--shadow-1);
+}
+.card-strong { background: var(--surface-strong); color: var(--text-on-strong); border-color: transparent; }
+.card-strong .eyebrow { color: var(--text-on-strong-muted); }
+.card-strong .accent { color: var(--accent-on-strong); }
+
+.field { display: grid; gap: var(--sp-2); }
+.field label { font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+.input {
+  min-height: var(--tap); padding: 0 var(--sp-4); width: 100%;
+  font: var(--fw-regular) var(--fs-base) var(--font); color: var(--text);
+  background: var(--surface); border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm);
+}
+.input::placeholder { color: var(--text-muted); }
+.input[aria-invalid="true"] { border-color: var(--danger); }
+.field .hint  { font-size: var(--fs-sm); color: var(--text-muted); }
+.field .error { font-size: var(--fs-sm); color: var(--danger); display: flex; gap: var(--sp-2); align-items: center; }
+
+.tag {
+  display: inline-flex; align-items: center; gap: var(--sp-1);
+  padding: var(--sp-1) var(--sp-3); border-radius: var(--radius-pill);
+  font-size: var(--fs-xs); font-weight: var(--fw-bold); letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1px solid currentColor;
+}
+.tag-accent  { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.tag-success { color: var(--success); }
+.tag-danger  { color: var(--danger); }
+.tag-info    { color: var(--info); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

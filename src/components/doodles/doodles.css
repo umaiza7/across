@@ -1,0 +1,36 @@
+/* Doodles share one stroke language with Simple Line Icons. */
+.doodle {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: rotate(var(--tilt, 0deg));
+  pointer-events: none;
+}
+.doodle--rifle { color: var(--doodle-strong); }
+.doodle--oyster { color: var(--doodle); }
+.doodle--kangaroo { color: var(--doodle-soft); }
+.doodle--cedar { color: var(--text); }
+
+/* Decorative loops. Calm mode and reduced motion switch them off in motion.css. */
+.doodle--float { animation: doodle-float 6s var(--ease-in-out) var(--delay, 0s) infinite; }
+.doodle--sway { animation: doodle-sway 5s var(--ease-in-out) var(--delay, 0s) infinite; }
+.doodle--twinkle { animation: doodle-twinkle 3.2s var(--ease-in-out) var(--delay, 0s) infinite; }
+
+@keyframes doodle-float {
+  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  50% { transform: translateY(-6px) rotate(calc(var(--tilt, 0deg) + 4deg)); }
+}
+@keyframes doodle-sway {
+  0%, 100% { transform: rotate(calc(var(--tilt, 0deg) - 5deg)); }
+  50% { transform: rotate(calc(var(--tilt, 0deg) + 5deg)); }
+}
+@keyframes doodle-twinkle {
+  0%, 100% { transform: scale(1) rotate(var(--tilt, 0deg)); opacity: 1; }
+  50% { transform: scale(0.82) rotate(calc(var(--tilt, 0deg) + 12deg)); opacity: 0.7; }
+}
+
+/* Absolutely placed doodles around headings and illustrations. */
+.doodle-spot { position: absolute; }

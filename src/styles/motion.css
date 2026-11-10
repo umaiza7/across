@@ -1,0 +1,31 @@
+/*
+ * One place that turns motion down.
+ * Calm mode (data-calm on <html>) removes decorative motion and confetti but keeps
+ * instant, meaningful feedback. The system's reduced-motion setting does the same.
+ */
+:root[data-calm='true'] .doodle,
+:root[data-calm='true'] .guide-body,
+:root[data-calm='true'] .guide-arm-wave,
+:root[data-calm='true'] .stop--current .stop__marker,
+:root[data-calm='true'] .loading__dots span,
+:root[data-calm='true'] .page-enter,
+:root[data-calm='true'] .reveal,
+:root[data-calm='true'] .stop--celebrate .stop__marker,
+:root[data-calm='true'] .choice,
+:root[data-calm='true'] .feedback {
+  animation: none !important;
+}
+:root[data-calm='true'] .track__fill,
+:root[data-calm='true'] .track__star {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .burst { display: none; }
+}
